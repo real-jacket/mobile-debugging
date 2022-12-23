@@ -8,6 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "node-simctl": "^7.1.6"
+    "node-simctl": "^7.1.6",
+    "ora": "^6.1.2"
   }
 }
