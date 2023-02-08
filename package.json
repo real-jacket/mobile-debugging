@@ -1,14 +1,43 @@
 {
   "name": "ios-app-debugging",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "main": "src/index.js",
   "license": "MIT",
+  "type": "module",
+  "bin": {
+    "device": "./dist/cli.js"
+  },
+  "tsup": {
+    "entry": [
+      "src/cli.ts"
+    ],
+    "splitting": false,
+    "sourcemap": false,
+    "clean": true,
+    "treeshake": true,
+    "shims": true,
+    "format": [
+      "esm",
+      "cjs"
+    ]
+  },
   "scripts": {
-    "start": "node index.js"
+    "dev": "tsx ./src/cli.ts",
+    "build": "tsx"
   },
   "dependencies": {
+    "cac": "^6.7.14",
+    "inquirer": "^9.1.4",
+    "inquirer-tree-prompt": "^1.1.2",
     "node-simctl": "^7.1.6",
-    "ora": "^6.1.2"
+    "ora": "^6.1.2",
+    "tsx": "^3.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.17",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.1",
+    "tsup": "^6.5.0",
+    "typescript": "^4.9.4"
   }
 }

@@ -1,0 +1,38 @@
+{
+    "include": [
+        "src/**/*",
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "baseUrl": ".",
+        "target": "es2019",
+        "module": "commonjs",
+        "allowJs": true,
+        "checkJs": false,
+        "importHelpers": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noImplicitAny": false,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "useUnknownInCatchVariables": false,
+        "forceConsistentCasingInFileNames": true,
+        "types": [
+            "node"
+        ],
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "composite": false,
+        "declaration": false,
+        "declarationMap": false,
+        "sourceMap": false,
+        "resolveJsonModule": true,
+        "moduleResolution": "node"
+    }
+}
