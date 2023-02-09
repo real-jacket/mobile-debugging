@@ -3,10 +3,25 @@ import { execSync } from 'child_process';
 import ora from 'ora';
 import inquirer from 'inquirer';
 
+export interface IDeviceInfo {
+  /** 系统版本 */
+  sdk: string;
+  /** 设备名称 */
+  name: string;
+  /** 设备状态 */
+  state: 'Shutdown' | string;
+  /** 设备id */
+  udid: string;
+  /** 系统平台 */
+  platform: 'iOS' | string;
+  isAvailable: boolean;
+  dataPathSize: number;
+}
+
 const simctl = new Simctl();
 
 export async function getDeviceList() {
-  const devices = await simctl.getDevices();
+  const devices: Record<string, IDeviceInfo[]> = await simctl.getDevices();
   return devices;
 }
 
@@ -27,10 +42,12 @@ export async function start() {
   //     }),
   //   };
   // });
-  //@ts-ignore
-  const list = Object.values(devices)
-    .filter((i: any) => !!i.length)[0]
-    .map((item: any) => {
+  const list = Object.keys(devices)
+    .filter((k) => !!devices[k].length)
+    .reduce<IDeviceInfo[]>((pre, cur) => {
+      return [...pre, ...devices[cur]];
+    }, [])
+    .map((item) => {
       return {
         name: item.name,
         value: {
